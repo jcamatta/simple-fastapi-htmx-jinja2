@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %} {% endblock %}
+
+
+
+{% block content %}
+    <div class="flex flex-col w-3/4">
+        <div class="p-6 rounded shadow-md">
+            <form 
+                hx-post="/models/vision" 
+                hx-target="#response"
+                hx-trigger="submit"
+                hx-swap="innerHTML"
+                enctype="multipart/form-data"
+                method="post"
+                class="flex flex-col form-predict">
+                <label for="image" class="mb-4 text-center font-bold">
+                    Upload an image for the model...
+                </label>
+                <input 
+                    type="file" name="image" id="image" accept="image/png,image/jpeg,image/jpg" 
+                    class="mb-4 border rounded" required>
+                <button 
+                    class="bg-violet-500 hover:bg-violet-600 rounded text-white p-2 flex items-center justify-center">
+                    Submit 
+                    <span class="htmx-indicator loader ml-2"></span>
+                </button> 
+            </form>
+
+            <div class="mt-4">Prediction: <span id="response"></span></div>
+        </div>
+
+        <div 
+            class="mt-4" 
+            hx-get="/models/vision" 
+            hx-trigger="every 5s" 
+            hx-swap="innerHTML transition:true">
+        </div>
+    
+    </div>
+
+    
+{% endblock %}

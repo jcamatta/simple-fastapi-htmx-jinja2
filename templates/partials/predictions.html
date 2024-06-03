@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="container mx-auto">
+        <h1 class="mb-4 text-center font-bold">Prediction Results</h1>
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <table class="min-w-full bg-white">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="w-1/4 py-2">Image</th>
+                        <th class="w-3/4 py-2">Prediction</th>
+                        <th class="w-3/4 py-2">DateTime</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    {% for key, obj in predictions.items() %}
+                        <tr>
+                            <td class="border px-4 py-2 font-bold">{{ obj.image }}</td>
+                            <td class="border px-4 py-2">{{ obj.prediction }}</td>
+                            <td class="border px-4 py-3">{{ obj.datetime }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
